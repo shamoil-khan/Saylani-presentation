@@ -1,72 +1,214 @@
 body {
   margin: 0;
-  background-color: #f5f5f5; /* Light background */
+  background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   flex-direction: column;
-  overflow: hidden;
-  font-family: "Arial", sans-serif; /* Clean font */
+  overflow-x: hidden;
+  font-family: "Arial", sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* Reduced gap slightly for better control */
+  width: 100%;
+  max-width: 900px;
+  padding: 0 15px;
+}
+
+#slides-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+  width: 100%;
+  max-width: 400px;
+  overflow: hidden; /* Ensures no overflow from slides */
+  border-radius: 15px;
+  background-color: #fff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: none;
-  text-align: center;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  opacity: 0; /* For fade-in effect */
-  transition: opacity 0.4s ease-in-out; /* Slightly longer transition */
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  transform: scale(0.95);
 }
 
 .slide.active {
   display: flex;
-  opacity: 1; /* Fade in when active */
+  opacity: 1;
+  transform: scale(1);
 }
 
 img {
-  max-width: 250px; /* Keeps the slightly larger size */
+  max-width: 80%;
+  max-height: 50%; /* Added to prevent image overflow */
   height: auto;
-  border-radius: 5px; /* Minimal rounding for a clean look */
+  border-radius: 10px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
 }
 
 .tech-name {
-  display: none; /* Hidden by default */
-  color: #222; /* Slightly darker text for contrast */
-  font-size: 2rem; /* Larger text for emphasis */
-  margin-top: 20px; /* More spacing */
-  font-weight: 700; /* Bolder text */
-  text-transform: uppercase; /* Stylish uppercase */
-  letter-spacing: 1.5px; /* More spacing for elegance */
-  background: linear-gradient(
-    90deg,
-    #007bff,
-    #00c4cc
-  ); /* Gradient background */
-  -webkit-background-clip: text; /* Gradient text effect */
+  display: none;
+  color: #222;
+  font-size: 2.2rem;
+  margin-top: 15px; /* Reduced slightly to fit better */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(90deg, #007bff, #00c4cc);
+  -webkit-background-clip: text;
   background-clip: text;
-  color: transparent; /* Makes gradient visible */
+  color: transparent;
+  animation: fadeInText 0.5s ease forwards;
+  text-align: center;
 }
 
 .reveal-btn {
-  margin-top: 20px; /* More spacing */
-  padding: 12px 24px; /* Larger button */
-  font-size: 1.2rem; /* Slightly bigger text */
-  background-color: #00c4cc; /* Teal instead of blue for freshness */
+  margin-top: 20px;
+  padding: 14px 30px;
+  font-size: 1.2rem;
+  background-color: #00c4cc;
   color: white;
   border: none;
   cursor: pointer;
-  border-radius: 10px; /* Softer corners */
-  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 196, 204, 0.3);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .reveal-btn:hover {
-  background-color: #009ba1; /* Darker teal on hover */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Elevated shadow */
+  background-color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
 }
 
 .reveal-btn:active {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Flatter on click */
+  transform: translateY(1px);
+  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.2);
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px; /* Standardized padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.nav-btn svg {
+  width: 40px; /* Fixed size for consistency */
+  height: 40px; /* Fixed size for consistency */
+  fill: #007bff;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover svg {
+  transform: scale(1.15);
+  fill: #00c4cc;
+}
+
+.nav-btn:active svg {
+  transform: scale(1);
+}
+
+/* Animation for tech-name */
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #slides-wrapper {
+    height: 300px;
+    max-width: 300px;
+  }
+
+  .tech-name {
+    font-size: 1.8rem;
+  }
+
+  .reveal-btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+  }
+
+  .nav-btn svg {
+    width: 35px;
+    height: 35px;
+  }
+
+  .slider-container {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  #slides-wrapper {
+    height: 250px;
+    max-width: 250px;
+  }
+
+  img {
+    max-width: 80%;
+    max-height: 40%;
+  }
+
+  .tech-name {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+
+  .reveal-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .nav-btn svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .slider-container {
+    gap: 10px;
+  }
 }
