@@ -1,0 +1,72 @@
+body {
+  margin: 0;
+  background-color: #f5f5f5; /* Light background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: "Arial", sans-serif; /* Clean font */
+}
+
+.slide {
+  display: none;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; /* For fade-in effect */
+  transition: opacity 0.4s ease-in-out; /* Slightly longer transition */
+}
+
+.slide.active {
+  display: flex;
+  opacity: 1; /* Fade in when active */
+}
+
+img {
+  max-width: 250px; /* Keeps the slightly larger size */
+  height: auto;
+  border-radius: 5px; /* Minimal rounding for a clean look */
+}
+
+.tech-name {
+  display: none; /* Hidden by default */
+  color: #222; /* Slightly darker text for contrast */
+  font-size: 2rem; /* Larger text for emphasis */
+  margin-top: 20px; /* More spacing */
+  font-weight: 700; /* Bolder text */
+  text-transform: uppercase; /* Stylish uppercase */
+  letter-spacing: 1.5px; /* More spacing for elegance */
+  background: linear-gradient(
+    90deg,
+    #007bff,
+    #00c4cc
+  ); /* Gradient background */
+  -webkit-background-clip: text; /* Gradient text effect */
+  background-clip: text;
+  color: transparent; /* Makes gradient visible */
+}
+
+.reveal-btn {
+  margin-top: 20px; /* More spacing */
+  padding: 12px 24px; /* Larger button */
+  font-size: 1.2rem; /* Slightly bigger text */
+  background-color: #00c4cc; /* Teal instead of blue for freshness */
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px; /* Softer corners */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.reveal-btn:hover {
+  background-color: #009ba1; /* Darker teal on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Elevated shadow */
+}
+
+.reveal-btn:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Flatter on click */
+}
